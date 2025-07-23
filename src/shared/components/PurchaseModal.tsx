@@ -40,9 +40,9 @@ export const PurchaseModal = () => {
   >("select");
 
   const movieInfo = movieData?.movieInfo;
-  const pricePerShare = movieInfo?.pricePerFraction || 0.025;
-  const totalCost = shares * pricePerShare;
-  const estimatedReturns = totalCost * 1.15; // 15% projected return
+  const pricePerShare = movieInfo?.pricePerFraction || 1500; // $1500 per share
+  const totalCost = shares * pricePerShare; // Total in USD
+  const estimatedReturns = totalCost * 1.15; // 15% projected return in USD
   const availableShares = movieInfo?.availableFractions || 11250;
 
   useEffect(() => {
@@ -80,7 +80,14 @@ export const PurchaseModal = () => {
       // Request account access
       await window.ethereum.request({ method: "eth_requestAccounts" });
 
-      const priceInWei = (totalCost * Math.pow(10, 18)).toString(); // Convert ETH to Wei
+      // For demo purposes, we'll simulate a USD transaction
+      // In a real implementation, this would integrate with a payment processor
+      // that handles USD payments and then issues blockchain tokens
+
+      // Convert USD to ETH for demo (using approximate rate)
+      const ethRate = 2500; // Approximate USD/ETH rate
+      const ethAmount = totalCost / ethRate;
+      const priceInWei = (ethAmount * Math.pow(10, 18)).toString(); // Convert ETH to Wei
 
       // Mock transaction parameters for demo
       const transactionParameters = {
@@ -114,7 +121,7 @@ export const PurchaseModal = () => {
   };
 
   const renderSelectStep = () => (
-    <div className="purchase-select-step">
+    <div className="purchase-select-step bg-black">
       <div className="modal-header">
         <div className="header-icon">
           <Crown className="w-8 h-8 text-godfather-gold" />
@@ -122,7 +129,7 @@ export const PurchaseModal = () => {
         <div className="header-content">
           <h2 className="modal-title">Acquire Ownership Shares</h2>
           <p className="modal-subtitle">
-            Invest in The Godfather 4 - The Epic Conclusion
+            Invest in GAMBINO - The Real Godfather
           </p>
         </div>
       </div>
@@ -151,7 +158,9 @@ export const PurchaseModal = () => {
             <TrendingUp className="w-5 h-5 text-godfather-gold" />
             <div>
               <span className="stat-label">Price per Share</span>
-              <span className="stat-value">{pricePerShare} ETH</span>
+              <span className="stat-value">
+                ${pricePerShare.toLocaleString()}
+              </span>
             </div>
           </div>
         </div>
@@ -200,7 +209,7 @@ export const PurchaseModal = () => {
         <div className="investment-breakdown">
           <div className="breakdown-row">
             <span>Share Price</span>
-            <span>{pricePerShare} ETH</span>
+            <span>${pricePerShare.toLocaleString()}</span>
           </div>
           <div className="breakdown-row">
             <span>Quantity</span>
@@ -208,11 +217,11 @@ export const PurchaseModal = () => {
           </div>
           <div className="breakdown-row total-row">
             <span>Total Investment</span>
-            <span>{totalCost.toFixed(6)} ETH</span>
+            <span>${totalCost.toLocaleString()}</span>
           </div>
           <div className="breakdown-row projected-row">
             <span>Projected Return*</span>
-            <span>{estimatedReturns.toFixed(6)} ETH</span>
+            <span>${estimatedReturns.toLocaleString()}</span>
           </div>
         </div>
 
@@ -257,7 +266,7 @@ export const PurchaseModal = () => {
           <div className="summary-details">
             <div className="detail-row">
               <span>Film</span>
-              <span>The Godfather 4</span>
+              <span>GAMBINO - The Real Godfather</span>
             </div>
             <div className="detail-row">
               <span>Shares</span>
@@ -265,11 +274,11 @@ export const PurchaseModal = () => {
             </div>
             <div className="detail-row">
               <span>Price per Share</span>
-              <span>{pricePerShare} ETH</span>
+              <span>${pricePerShare.toLocaleString()}</span>
             </div>
             <div className="detail-row total-highlight">
               <span>Total Cost</span>
-              <span>{totalCost.toFixed(6)} ETH</span>
+              <span>${totalCost.toLocaleString()}</span>
             </div>
           </div>
         </div>
@@ -312,7 +321,7 @@ export const PurchaseModal = () => {
       <div className="confirm-actions">
         <Button onClick={handlePurchase} className="confirm-purchase-btn">
           <Wallet className="w-5 h-5 mr-2" />
-          Confirm Purchase ({totalCost.toFixed(4)} ETH)
+          Confirm Purchase (${totalCost.toLocaleString()})
         </Button>
         <Button onClick={() => setStep("select")} className="back-btn">
           Back to Edit
@@ -366,7 +375,8 @@ export const PurchaseModal = () => {
         </div>
         <h2 className="success-title">Investment Successful!</h2>
         <p className="success-subtitle">
-          You now own {shares.toLocaleString()} shares of The Godfather 4
+          You now own {shares.toLocaleString()} shares of GAMBINO - The Real
+          Godfather
         </p>
 
         <div className="success-details">

@@ -37,6 +37,7 @@ export interface TokenCodeModel {
 
 export interface MovieInfo {
   title: string;
+  subtitle?: string;
   director: string;
   year: number;
   duration: string;
@@ -46,6 +47,8 @@ export interface MovieInfo {
   cast: string[];
   festivals: FestivalAward[];
   quotes: MovieQuote[];
+  reviews?: MovieReview[];
+  comparatives?: MovieComparative[];
   totalFractions: number;
   pricePerFraction: number;
   availableFractions: number;
@@ -62,6 +65,19 @@ export interface MovieQuote {
   text: string;
   author: string;
   context?: string;
+}
+
+export interface MovieReview {
+  publication: string;
+  quote: string;
+  rating?: string;
+}
+
+export interface MovieComparative {
+  title: string;
+  awards?: string;
+  domestic?: string;
+  international?: string;
 }
 
 export interface GlobalState {

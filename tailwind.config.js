@@ -30,20 +30,20 @@ export default {
       colors: {
         // Godfather Color Palette
         godfather: {
-          gold: "#D4AF37",
-          "dark-gold": "#B8941F",
-          "light-gold": "#F4E4BC",
-          cream: "#F5F5DC",
+          gold: "#8B0000",
+          "dark-gold": "#8B0000",
+          "light-gold": "#8B0000",
+          cream: "#8B0000",
           dark: "#1A0F0A",
           brown: "#2D1B0E",
           "deep-red": "#8B0000",
           wine: "#722F37",
           shadow: "#0D0907",
-          accent: "#CD853F",
+          accent: "#8B0000",
         },
         primary: {
-          yellow: "#D4AF37", // Changed to Godfather gold
-          amber: "#B8941F", // Changed to Godfather dark gold
+          yellow: "#8B0000", // Changed to Godfather gold
+          amber: "#8B0000", // Changed to Godfather dark gold
           black: "#1A0F0A", // Changed to Godfather dark
           dark: "#0D0907", // Changed to Godfather shadow
         },

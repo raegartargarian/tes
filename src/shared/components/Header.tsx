@@ -29,13 +29,7 @@ const Header = () => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
-  const navigationItems = [
-    { name: "HOME", href: "#home", active: true },
-    { name: "ABOUT", href: "#about" },
-    { name: "CAST", href: "#cast" },
-    { name: "TRAILER", href: "#trailer" },
-    { name: "INVEST", href: "#invest" },
-  ];
+  const navigationItems = [{ name: "HOME", href: "#home", active: true }];
 
   const handleLogin = async () => {
     if (login) {
@@ -64,8 +58,8 @@ const Header = () => {
         <div className="godfather-logo">
           <Crown className="w-8 h-8 text-godfather-gold" />
           <div className="logo-text">
-            <span className="logo-main">THE GODFATHER</span>
-            <span className="logo-chapter">IV</span>
+            <span className="logo-main">GAMBINO</span>
+            <span className="logo-chapter">The Real Godfather</span>
           </div>
         </div>
 

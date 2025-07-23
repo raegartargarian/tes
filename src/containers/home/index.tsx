@@ -1,4 +1,11 @@
 // src/containers/home/index.tsx
+import casino from "@/assets/images/casino.png";
+import Fellas from "@/assets/images/fellas.png";
+import God1 from "@/assets/images/god1.png";
+import God2 from "@/assets/images/god2.png";
+import God3 from "@/assets/images/god3.png";
+import heat from "@/assets/images/heat.png";
+
 import { Button } from "@/components/ui/button";
 import { globalActions } from "@/containers/global/slice";
 import NoDataAvailable from "@/shared/components/NoData";
@@ -6,7 +13,7 @@ import {
   openViewVaultExplorer,
   viewTXInExplorer,
 } from "@/shared/utils/viewVaultInExplorer";
-import { Award, Crown, Play, Users } from "lucide-react";
+import { Award, Crown, Play, Star, TrendingUp } from "lucide-react";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GlobalSelectors } from "../global/selectors";
@@ -66,7 +73,6 @@ const HomePage = () => {
 
   const { movieInfo, video, images } = movieData;
 
-  // Check if we're using test data
   if (movieInfo.title === "Test Data") {
     return <NoDataAvailable message="Movie Data Unavailable" />;
   }
@@ -74,22 +80,21 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-godfather-dark text-godfather-cream">
       {/* Cinematic Hero Section */}
-      <section className="godfather-hero-section">
-        {/* Dramatic Background */}
+      <section className="gambino-hero-section">
         {images.length > 0 && (
-          <div className="godfather-hero-bg">
+          <div className="gambino-hero-bg">
             <img
               src={URL.createObjectURL(images[0].blob)}
               alt={movieInfo.title}
-              className="godfather-hero-image"
+              className="gambino-hero-image"
             />
-            <div className="godfather-overlay"></div>
+            <div className="gambino-overlay"></div>
           </div>
         )}
 
-        <div className="godfather-hero-content">
-          {/* Prestigious Awards */}
-          <div className="godfather-awards-panel">
+        <div className="gambino-hero-content">
+          {/* Awards Panel */}
+          <div className="gambino-awards-panel">
             <div className="awards-header">
               <Crown className="w-8 h-8 text-godfather-gold" />
               <span className="awards-title">FESTIVAL HONORS</span>
@@ -106,18 +111,17 @@ const HomePage = () => {
             ))}
           </div>
 
-          {/* Majestic Title Treatment */}
-          <div className="godfather-title-treatment">
+          {/* Main Title Treatment */}
+          <div className="gambino-title-treatment">
             <div className="franchise-heritage">
               <span className="heritage-line"></span>
               <span className="heritage-text">
-                THE LEGENDARY SAGA CONCLUDES
+                THE MAFIA STORY YOU'VE NEVER BEEN TOLD
               </span>
               <span className="heritage-line"></span>
             </div>
-            <h1 className="godfather-main-title">THE</h1>
-            <h1 className="godfather-sub-title">GODFATHER</h1>
-            <div className="chapter-number">IV</div>
+            <h1 className="gambino-main-title">{movieInfo.title}</h1>
+            <h2 className="gambino-subtitle">{movieInfo.subtitle}</h2>
             <p className="director-credit">
               DIRECTED BY{" "}
               <span className="director-name">
@@ -126,43 +130,161 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Character Showcase */}
-          <div className="character-showcase">
-            <div className="cast-header">
-              <Users className="w-6 h-6 text-godfather-gold" />
-              <span className="cast-title">LEGENDARY CAST</span>
+          {/* Reviews Showcase */}
+          <div className="gambino-reviews-panel">
+            <div className="reviews-header">
+              <Star className="w-6 h-6 text-godfather-gold" />
+              <span className="reviews-title">INDUSTRY ACCLAIM</span>
             </div>
-            <div className="cast-grid">
-              {movieInfo.cast.slice(0, 6).map((actor, index) => (
-                <div key={index} className="cast-member">
-                  <span className="actor-name">{actor}</span>
-                </div>
-              ))}
-            </div>
+            {movieInfo.reviews?.slice(0, 3).map((review, index) => (
+              <div key={index} className="review-item">
+                <div className="review-publication">{review.publication}</div>
+                <div className="review-quote">"{review.quote}"</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Epic Quotes Section */}
-      <section className="godfather-quotes-section">
+      {/* Synopsis Section */}
+      <section className="gambino-synopsis-section">
         <div className="container mx-auto px-4">
-          <div className="quotes-content">
-            <div className="quote-block-main">
-              <div className="quote-ornament-left"></div>
-              <blockquote className="godfather-quote">
-                <p className="quote-text">"{movieInfo.quotes[0].text}"</p>
+          <div className="synopsis-header">
+            <h2 className="synopsis-title">SYNOPSIS</h2>
+            <p className="synopsis-tagline">"{movieInfo.description}"</p>
+          </div>
+          <div className="synopsis-content">
+            <p className="synopsis-text">{movieInfo.longDescription}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Comparatives Section */}
+      <section className="gambino-comparatives-section">
+        <div className="container mx-auto px-4">
+          <h2 className="comparatives-title">COMPARATIVES FOR GAMBINO</h2>
+          <div className="comparatives-grid">
+            {movieInfo.comparatives?.map((comp, index) => (
+              <div key={index} className="comparative-card">
+                <div className="comparative-poster">
+                  {/* Placeholder for movie poster */}
+                  <div className="poster-placeholder">
+                    {/* for index 0, put God1 and so on */}
+                    <img
+                      src={
+                        index === 0
+                          ? God1
+                          : index === 1
+                            ? God2
+                            : index === 2
+                              ? God3
+                              : index === 3
+                                ? Fellas
+                                : index === 4
+                                  ? casino
+                                  : heat
+                      }
+                      alt={comp.title}
+                    />
+                  </div>
+                </div>
+                <div className="comparative-details">
+                  <h3 className="comparative-title">{comp.title}</h3>
+                  {comp.awards && (
+                    <p className="comparative-awards">Awards: {comp.awards}</p>
+                  )}
+                  {comp.domestic && (
+                    <p className="comparative-box-office">
+                      Domestic Box Office: {comp.domestic}
+                    </p>
+                  )}
+                  {comp.international && (
+                    <p className="comparative-box-office">
+                      International Box Office: {comp.international}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="note-disclaimer">
+            <p className="disclaimer-text">
+              *It is important to recognize that the total number for the
+              International Box Office does not include any ancillary revenues.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Story of 20th Century America */}
+      <section className="gambino-story-section">
+        <div className="container mx-auto px-4">
+          <h2 className="story-title">STORY OF 20TH CENTURY AMERICA</h2>
+
+          <div className="story-content">
+            <div className="story-text">
+              <p className="story-opening">
+                Much like his friend and boss of Chicago, Tony Accardo, Don
+                Carlo implemented strict rules that respected families and
+                disdained drug dealing. A devoted husband to Caterina
+                ("Catherine") and father, Carlo emphasized a transition from
+                bootlegging and racketeering into legitimate business. As a
+                result, his descendants oversee companies with a combined worth
+                of over one billion dollars, including trucking and food
+                distribution businesses. He also organized the small shop owners
+                in the Italian neighborhoods, and to this day, many pizzeria and
+                funeral parlor chains owe their organized and continued success.
+              </p>
+
+              <p className="story-detail">
+                Perhaps most importantly, in "Gambino," Carlo's story is played
+                against the realities of the often-traumatizing Italian
+                immigrant experience in early 20th century America. From job
+                discrimination to language barriers to hostility from Irish, and
+                from the Irish to the Italians and Chinese to the social
+                hierarchy—a fact that young Carlo utilized to forge close
+                relationships with both Black businessmen and the 'Godfather of
+                Chinatown.' Before One, wars, to paraphrasing Machiavelli, the
+                fastest way up the ladder. Imprisoned before World War Two,
+                Carlo made a deal with Black safecrackers: they would steal
+                coveted "ration stamps" and Carlo would sell them at a discount
+                to the many ships in his vast network, splitting the take
+                ～～～～ with ～～～～～ the ～～～～～～～～～～～～～～～～
+                Blacks. The ships then cashed them in with the government at
+                full value. With Qing, the Don helped the Chinese gangs collect
+                their illegal imports (especially fabrics for their sweat shops)
+                at the docks Carlo controlled. No other boss made these sorts of
+                inter-racial alliances to the extent Carlo did.
+              </p>
+            </div>
+
+            <div className="story-quote">
+              <blockquote className="story-blockquote">
+                <p>
+                  One might say that "Gambino" does for Italians what
+                  "Scorsese's "Gangs of New York" did for the Irish. Carlo was
+                  no saint, to be certain, but he knew that saints rarely
+                  survived the mean streets of America.
+                </p>
+                <p>
+                  After seeing "Gambino," you will know everything about the New
+                  York Mafia. Finally.
+                </p>
               </blockquote>
-              <div className="quote-ornament-right"></div>
-              <footer className="quote-attribution">
-                — {movieInfo.quotes[0].author}
-              </footer>
+              <cite className="story-cite">
+                —Gus Russo,
+                <br />
+                Author of "The Outfit" and
+                <br />
+                "Supermob"
+              </cite>
             </div>
           </div>
         </div>
       </section>
 
       {/* Investment Opportunity Section */}
-      <section className="godfather-investment-section">
+      <section className="gambino-investment-section">
         <div className="container mx-auto px-4">
           <div className="investment-content">
             <div className="investment-header">
@@ -170,7 +292,7 @@ const HomePage = () => {
                 OWN A PIECE OF CINEMA HISTORY
               </h2>
               <p className="investment-subtitle">
-                Become part of the most anticipated conclusion in film history
+                Invest in the most anticipated crime epic of 2025
               </p>
             </div>
 
@@ -201,12 +323,12 @@ const HomePage = () => {
 
               <div className="investment-card">
                 <div className="card-icon">
-                  <Users className="w-8 h-8 text-godfather-gold" />
+                  <TrendingUp className="w-8 h-8 text-godfather-gold" />
                 </div>
                 <div className="card-content">
                   <h3 className="card-title">Price per Share</h3>
                   <div className="card-value">
-                    {movieInfo.pricePerFraction} ETH
+                    ${movieInfo.pricePerFraction.toLocaleString()}
                   </div>
                 </div>
               </div>
@@ -214,7 +336,7 @@ const HomePage = () => {
 
             <Button
               onClick={handlePurchaseClick}
-              className="godfather-cta-button"
+              className="gambino-cta-button"
             >
               ACQUIRE OWNERSHIP SHARES
             </Button>
@@ -223,7 +345,7 @@ const HomePage = () => {
       </section>
 
       {/* Blockchain Verification */}
-      <section className="godfather-verification-section">
+      <section className="gambino-verification-section">
         <div className="container mx-auto px-4 text-center">
           <h3 className="verification-title">AUTHENTICATED ON BLOCKCHAIN</h3>
           <p className="verification-description">
@@ -246,14 +368,14 @@ const HomePage = () => {
 
       {/* Exclusive Trailer Section */}
       {video && (
-        <section className="godfather-trailer-section">
+        <section className="gambino-trailer-section">
           <div className="container mx-auto px-4">
             <div className="trailer-showcase">
               <div className="trailer-introduction">
                 <h2 className="trailer-heading">EXCLUSIVE PREVIEW</h2>
                 <p className="trailer-description">
-                  Witness the epic conclusion of the Corleone legacy in this
-                  exclusive trailer
+                  Witness the untold story of Carlo Gambino in this exclusive
+                  trailer
                 </p>
               </div>
 
@@ -289,8 +411,10 @@ const HomePage = () => {
                 {!isVideoPlaying && (
                   <div className="player-overlay">
                     <div className="trailer-info">
-                      <div className="trailer-title">The Godfather 4</div>
-                      <div className="trailer-subtitle">Official Trailer</div>
+                      <div className="trailer-title">{movieInfo.title}</div>
+                      <div className="trailer-subtitle">
+                        {movieInfo.subtitle}
+                      </div>
                     </div>
                     <Button
                       onClick={handlePlayVideo}
@@ -305,113 +429,6 @@ const HomePage = () => {
           </div>
         </section>
       )}
-
-      {/* Director's Vision */}
-      <section className="godfather-vision-section">
-        <div className="container mx-auto px-4">
-          <div className="vision-content">
-            <div className="vision-text">
-              <h2 className="vision-title">DIRECTOR'S VISION</h2>
-
-              <div className="vision-quote">
-                <p className="vision-opening">"{movieInfo.quotes[2].text}"</p>
-                <cite className="vision-cite">
-                  — {movieInfo.quotes[2].author}
-                </cite>
-              </div>
-
-              <div className="vision-description">
-                <p>
-                  After decades of contemplation, Francis Ford Coppola returns
-                  to conclude the most influential crime saga in cinema history.
-                  The Godfather 4 represents not just a film, but a meditation
-                  on power, family, and the weight of legacy that spans
-                  generations.
-                </p>
-
-                <p>
-                  Set against the backdrop of modern America, this final chapter
-                  explores how the sins of the past echo through time, affecting
-                  not just the Corleone family, but the very fabric of power
-                  itself. It is a story of redemption, of reckoning, and of the
-                  ultimate price of absolute power.
-                </p>
-
-                <p>
-                  With master cinematographer and a cast that bridges
-                  generations of talent, The Godfather 4 promises to deliver the
-                  epic scope and intimate character study that has made the
-                  franchise legendary.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Legacy Quote */}
-      <section className="godfather-legacy-section">
-        <div className="container mx-auto px-4">
-          <div className="legacy-content">
-            <div className="legacy-ornament-top"></div>
-            <blockquote className="legacy-quote">
-              <p>"{movieInfo.quotes[1].text}"</p>
-            </blockquote>
-            <div className="legacy-ornament-bottom"></div>
-            <footer className="legacy-attribution">
-              — {movieInfo.quotes[1].author}
-            </footer>
-          </div>
-        </div>
-      </section>
-
-      {/* About the Final Chapter */}
-      <section className="godfather-about-section">
-        <div className="container mx-auto px-4">
-          <div className="about-layout">
-            <div className="about-header">
-              <h2 className="about-title">THE FINAL CHAPTER</h2>
-            </div>
-
-            <div className="about-narrative">
-              <p className="about-opening">{movieInfo.longDescription}</p>
-
-              <p className="about-cast-intro">
-                The film brings together legendary performers{" "}
-                {movieInfo.cast.slice(0, 4).join(", ")}, and introduces a new
-                generation of talent including{" "}
-                {movieInfo.cast.slice(4, 8).join(", ")}, creating a bridge
-                between the classic era and contemporary cinema.
-              </p>
-
-              <p className="about-conclusion">
-                This is more than a film—it is a cultural event, the completion
-                of a story that has defined what it means to explore power,
-                family, and the American Dream through the lens of cinema. The
-                Godfather 4 stands as both a worthy conclusion to the saga and a
-                standalone masterpiece that will resonate for generations to
-                come.
-              </p>
-            </div>
-
-            {/* Film Details */}
-            <div className="film-details">
-              <div className="detail-item">
-                <span className="detail-label">Runtime</span>
-                <span className="detail-value">{movieInfo.duration}</span>
-              </div>
-              <div className="detail-item">
-                <span className="detail-label">Genre</span>
-                <span className="detail-value">{movieInfo.genre}</span>
-              </div>
-              <div className="detail-item">
-                <span className="detail-label">Release Year</span>
-                <span className="detail-value">{movieInfo.year}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

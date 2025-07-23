@@ -36,30 +36,30 @@ function* fetchMovieData(): any {
       return;
     }
 
-    // Create movie info object for The Godfather 4
+    // Create movie info object for GAMBINO
     const movieInfo: MovieInfo = {
-      title: "The Godfather 4",
-      director: "Francis Ford Coppola",
+      title: "GAMBINO",
+      subtitle: "The Real Godfather",
+      director: "John Woo Yu-Sen",
       year: 2025,
       duration: "180 minutes",
       genre: "Crime Drama",
-      description:
-        "The final chapter in the Corleone saga, exploring the family's ultimate reckoning with their past.",
+      description: "The Mafia story you've never been told.",
       longDescription:
-        "The Godfather 4 brings the legendary Corleone saga to its epic conclusion. Set in modern-day America, the film follows the remaining members of the Corleone family as they face the consequences of decades of power, betrayal, and bloodshed. As new threats emerge from within and without, the family must confront their legacy and decide what it truly means to be a Corleone. This masterful finale weaves together themes of family, loyalty, and redemption while delivering the cinematic grandeur fans have come to expect from the franchise.",
+        "In 1921, nineteen year-old Carlo Gambino arrived by boat to America as an unpapered stowaway. He had left Palermo, Sicily, the site of his recent induction into La Cosa Nostra, which was at war with Mussolini's Fascists. Unlike his fellows in 'The Brotherhood,' Carlo was a disciple of Niccolò Machiavelli, having re-read The Prince so often that he had it memorized; he thus appreciated the value of long-game strategy coupled with the rare, discreet use of violence when needed. With Machiavelli as his guide, 'Don Carlo' would quickly rise from bootlegger to the most powerful Mafia boss in New York, eventually becoming the model for Mario Puzo's 'Don Corleone' of 'Godfather' fame.",
       cast: [
-        "Al Pacino",
-        "Robert De Niro",
         "Oscar Isaac",
-        "Zendaya",
+        "Amanda Seyfried",
         "John David Washington",
-        "Talia Shire",
-        "Andy Garcia",
+        "Zendaya",
         "Vincent D'Onofrio",
         "Adam Driver",
         "Regina King",
         "Michael Shannon",
         "Thomasin McKenzie",
+        "Brian Cox",
+        "John Turturro",
+        "Michael Imperioli",
       ],
       festivals: [
         {
@@ -96,20 +96,71 @@ function* fetchMovieData(): any {
       ],
       quotes: [
         {
-          text: "Every family has its secrets. Ours have shaped the world.",
-          author: "Michael Corleone",
+          text: "One might say that 'Gambino' does for Italians what 'Scorsese's Gangs of New York' did for the Irish. Carlo was no saint, to be certain, but he knew that saints rarely survived the mean streets of America.",
+          author: "Gus Russo, Author of 'The Outfit' and 'Supermob'",
+        },
+        {
+          text: "After seeing 'Gambino,' you will know everything about the New York Mafia. Finally.",
+          author: "Film Critic",
         },
         {
           text: "Power is not revealed by striking hard or often, but by striking true.",
-          author: "Don Vito Corleone",
+          author: "Don Carlo Gambino",
+        },
+      ],
+      reviews: [
+        {
+          publication: "Variety",
+          quote: "Most Anticipated Motion Picture",
         },
         {
-          text: "In the end, we are all prisoners of our choices, but some cages are made of gold.",
-          author: "Vincent Mancini",
+          publication: "The Hollywood Reporter",
+          quote: "Most Anticipated Motion Picture",
+        },
+        {
+          publication: "Screen International",
+          quote: "Most Anticipated Motion Picture",
+        },
+      ],
+      comparatives: [
+        {
+          title: "The Godfather Part I",
+          awards: "Won 3 Oscars",
+          domestic: "$134,381,073",
+          international: "$250,341,516",
+        },
+        {
+          title: "The Godfather: Part II",
+          awards: "Won for 6 Oscars",
+          domestic: "$47,834,595",
+          international: "$47,961,919",
+        },
+        {
+          title: "The Godfather: Part III",
+          awards: "Nominated for 7 Oscars",
+          domestic: "$66,761,392",
+          international: "$136,861,392",
+        },
+        {
+          title: "Goodfellas",
+          awards: "Won Oscar",
+          domestic: "$46,909,721",
+          international: "$47,036,784",
+        },
+        {
+          title: "Casino",
+          awards: "Nominated for 1 Oscar",
+          domestic: "$42,512,375",
+          international: "$116,112,375",
+        },
+        {
+          title: "Heat",
+          domestic: "$67,436,818",
+          international: "$187,436,818",
         },
       ],
       totalFractions: 15000,
-      pricePerFraction: 0.025, // 0.025 ETH per fraction
+      pricePerFraction: 1500, // $1500 per fraction
       availableFractions: 11250,
     };
 
@@ -261,7 +312,7 @@ function* fetchMovieData(): any {
 
                   const videoBlob = yield call([videoResponse, "blob"]);
                   movieData.video = {
-                    name: videoFile.filename || "The Godfather 4 Trailer",
+                    name: videoFile.filename || "GAMBINO Trailer",
                     blob: videoBlob,
                   };
                   break; // Use first video found

@@ -21,7 +21,7 @@ export const Footer = () => {
     setTimeout(() => {
       setIsSubscribing(false);
       setEmail("");
-      alert("Thank you for subscribing to The Godfather 4 updates!");
+      alert("Thank you for subscribing to GAMBINO updates!");
     }, 2000);
   };
 
@@ -80,7 +80,7 @@ export const Footer = () => {
               <Crown className="w-8 h-8 text-godfather-gold mb-4" />
               <h3 className="newsletter-title">STAY INFORMED</h3>
               <p className="newsletter-description">
-                Receive exclusive updates about The Godfather 4 investment
+                Receive exclusive updates about GAMBINO investment
                 opportunities, behind-the-scenes content, and blockchain
                 verification news.
               </p>
@@ -118,14 +118,14 @@ export const Footer = () => {
               <div className="footer-logo">
                 <Crown className="w-10 h-10 text-godfather-gold mb-4" />
                 <div className="brand-text">
-                  <h2 className="brand-title">THE GODFATHER</h2>
-                  <span className="brand-chapter">IV</span>
+                  <h2 className="brand-title">GAMBINO</h2>
+                  <span className="brand-chapter">The Real Godfather</span>
                 </div>
               </div>
 
               <p className="brand-description">
-                The epic conclusion to cinema's most legendary saga. Own a piece
-                of film history through blockchain-verified ownership.
+                The untold story of Carlo Gambino, the real godfather. Own a
+                piece of film history through blockchain-verified ownership.
               </p>
 
               <div className="social-links">
@@ -186,8 +186,7 @@ export const Footer = () => {
             <div className="bottom-content">
               <div className="copyright">
                 <p>
-                  &copy; 2025 The Godfather 4 Investment Platform. All rights
-                  reserved.
+                  &copy; 2025 GAMBINO Investment Platform. All rights reserved.
                 </p>
                 <p className="disclaimer">
                   This platform is for investment purposes. Please read all
