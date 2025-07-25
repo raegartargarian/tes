@@ -799,34 +799,121 @@
   .gambino-investment-section {
     @apply py-20;
     background: linear-gradient(135deg, #2d1b0e 0%, #1a0f0a 100%);
+    border-top: 2px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .investment-content {
+    @apply max-w-6xl mx-auto text-center space-y-12;
   }
 
   .investment-header {
+    @apply space-y-4;
+    
     .investment-title {
       @apply text-4xl lg:text-5xl font-black text-godfather-gold mb-4;
       font-family: 'Impact', 'Arial Black', sans-serif;
+      letter-spacing: 0.05em;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+    
+    .investment-subtitle {
+      @apply text-xl lg:text-2xl text-godfather-cream font-light;
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      opacity: 0.9;
     }
   }
 
+  .investment-details {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12;
+  }
+
   .investment-card {
-    .card-value {
-      @apply text-3xl lg:text-4xl font-black text-godfather-gold;
-      font-family: 'Arial', sans-serif;
+    @apply p-8 rounded-xl border border-godfather-gold/30 transition-all duration-300 transform hover:scale-105 hover:border-godfather-gold/60;
+    background: linear-gradient(145deg, rgba(212, 175, 55, 0.08), rgba(0, 0, 0, 0.6));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    
+    &:hover {
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.12), rgba(0, 0, 0, 0.7));
+      box-shadow: 0 12px 48px rgba(212, 175, 55, 0.2);
+    }
+    
+    .card-icon {
+      @apply flex justify-center mb-4;
+      transform: translateY(-2px);
+    }
+    
+    .card-content {
+      @apply space-y-3;
+      
+      .card-title {
+        @apply text-lg font-semibold text-godfather-cream;
+        font-family: 'Playfair Display', serif;
+        letter-spacing: 0.02em;
+      }
+      
+      .card-value {
+        @apply text-3xl lg:text-4xl font-black text-godfather-gold;
+        font-family: 'Impact', 'Arial Black', sans-serif;
+        letter-spacing: -0.02em;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      }
     }
   }
 
   .gambino-cta-button {
-    @apply px-12 py-4 text-xl font-black rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply px-12 py-4 text-xl font-black rounded-lg transition-all duration-300 transform hover:scale-105 mx-auto;
     background: linear-gradient(45deg, #D4AF37, #B8941F);
     color: #000000;
     border: 3px solid #D4AF37;
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
     font-family: 'Impact', 'Arial Black', sans-serif;
     letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 280px;
     
     &:hover {
       background: linear-gradient(45deg, #F4E4BC, #D4AF37);
       box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+      transform: scale(1.05) translateY(-2px);
+    }
+    
+    &:active {
+      transform: scale(1.02) translateY(0px);
+    }
+  }
+
+  // Mobile responsive adjustments for investment section
+  @media (max-width: 768px) {
+    .investment-details {
+      @apply grid-cols-1 gap-6;
+    }
+    
+    .investment-card {
+      @apply p-6;
+      
+      .card-value {
+        @apply text-2xl lg:text-3xl;
+      }
+    }
+    
+    .gambino-cta-button {
+      @apply px-8 py-3 text-lg;
+      min-width: 240px;
+    }
+    
+    .investment-header {
+      .investment-title {
+        @apply text-3xl lg:text-4xl;
+      }
+      
+      .investment-subtitle {
+        @apply text-lg lg:text-xl;
+      }
     }
   }
 
